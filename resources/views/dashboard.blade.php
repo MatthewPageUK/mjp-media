@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    {{ __("You're logged in!") }} {{ Auth::user()->name }}
                 </div>
 
 
@@ -43,8 +43,8 @@
                                 <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">
                                     <div class="pl-3">
-                                        <div class="text-base font-semibold">Neil Sims</div>
-                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                        <div class="text-base font-semibold">{{ Auth::user()->name }}</div>
+                                        <div class="font-normal text-gray-500">{{ Auth::user()->email }}</div>
                                     </div>
                                 </th>
                                 <td class="px-6 py-4">
