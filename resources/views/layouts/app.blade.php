@@ -640,12 +640,17 @@
                     >
                         <div class="py-3 px-4">
                         <span
-                            class="block text-sm font-semibold text-gray-900 dark:text-white"
-                            >Neil Sims</span
+                            class="block flex items-center text-sm font-semibold text-gray-900 dark:text-white"
+                            ><span class="flex-1">{{ Auth::user()->name }}</span>
+
+                          <span
+                            class="flex-shrink text-red-600 uppercase font-bold text-xs"
+                            >{{ Auth::user()->isAdmin() ?: 'Admin' }}</span
+                          ></span
                         >
                         <span
                             class="block text-sm text-gray-900 truncate dark:text-white"
-                            >name@flowbite.com</span
+                            >{{ Auth::user()->email }}</span
                         >
                         </div>
                         <ul
@@ -654,14 +659,14 @@
                         >
                         <li>
                             <a
-                            href="#"
+                            href="{{ route('profile.edit') }}"
                             class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >My profile</a
                             >
                         </li>
                         <li>
                             <a
-                            href="#"
+                            href="{{ route('profile.edit') }}"
                             class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >Account settings</a
                             >
