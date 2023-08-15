@@ -31,5 +31,15 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'User 3'
         ]);
+
+        User::factory()->create([
+            'active' => false
+        ]);
+
+        User::factory()->create([
+            'active' => false
+        ]);
+
+        User::factory(5)->create();
     }
 }

@@ -1,6 +1,13 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Admin\Users\{
+    CreateUser,
+    DeleteUser,
+    UpdateUser,
+    ReadUser,
+    ListUsers,
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/users', ListUsers::class)->middleware(['auth', 'verified'])->name('users');
+Route::get('/user/create', CreateUser::class)->middleware(['auth', 'verified'])->name('user.create');
+Route::get('/user/{user}', ReadUser::class)->middleware(['auth', 'verified'])->name('user.read');
+Route::get('/user/{user}/edit', UpdateUser::class)->middleware(['auth', 'verified'])->name('user.update');
+Route::get('/user/{user}/delete', DeleteUser::class)->middleware(['auth', 'verified'])->name('user.delete');
+
 
 require __DIR__.'/auth.php';
