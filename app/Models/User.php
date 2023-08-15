@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
+use App\Facades\VirtualStorage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,7 +21,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'website',
+        'directory',
         'active',
         'capacity',
         'email',
@@ -48,6 +48,57 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the total number of files
+     *
+     * @return int
+     */
+    public function getTotalFilesAttribute(): int
+    {
+        return sizeof(Storage::allFiles($this->storagePath));
+    }
+
+    /**
+     * Percentage of capacity used.
+     *
+     * @return int
+     */
+    public function getCapacityUsedPercentAttribute(): int
+    {
+
+        $file_size = 0;
+        $files = 0;
+        foreach( Storage::allFiles($this->storagePath) as $file)
+        {
+            $file_size += Storage::size($file);
+            $files++;
+        }
+
+        $used = $file_size / 1024 / 1024;
+        $percent = floor($used / $this->capacity * 100);
+        return $percent;
+    }
+
+    /**
+     * Total capacity used.
+     *
+     * @return int
+     */
+    public function getCapacityUsedAttribute(): int
+    {
+        return VirtualStorage::getUserSpaceUsed($this);
+    }
+
+    /**
+     * The storage path for this user
+     *
+     * @return string
+     */
+    public function getStoragePathAttribute(): string
+    {
+        return sprintf('public/users/%s', $this->directory);
+    }
 
     /**
      * Is the user an admin?

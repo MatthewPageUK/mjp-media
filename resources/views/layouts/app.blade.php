@@ -11,6 +11,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        @livewireStyles
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -297,7 +299,7 @@
                             alt="Roberta Casas image"
                           />
                           <div
-                            class="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-green-400 rounded-full border border-white dark:border-gray-700"
+                            class="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-400 rounded-full border border-white dark:border-gray-700"
                           >
                             <svg
                               aria-hidden="true"
@@ -782,12 +784,21 @@
             </nav>
 
 <!-- Sidebar -->
-
-<x-navbar.admin />
+@if (Auth::user()->isAdmin())
+  <x-navbar.admin />
+@else
+  <x-navbar.user />
+@endif
 
 
 
             <main class="p-4 md:ml-64 h-auto pt-20">
+
+              <div>
+                <x-session-messages />
+              </div>
+
+
                 {{ $slot }}
               {{-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                 <div
@@ -840,6 +851,6 @@
             </main>
           </div>
 
-
+      @livewireScripts
     </body>
 </html>
