@@ -8,6 +8,7 @@ use App\Http\Livewire\Admin\Users\{
     ReadUser,
     ListUsers,
 };
+use App\Http\Livewire\User\Explorer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
 Route::get('/dashboard', function () {
@@ -41,5 +44,7 @@ Route::get('/user/{user}', ReadUser::class)->middleware(['auth', 'verified'])->n
 Route::get('/user/{user}/edit', UpdateUser::class)->middleware(['auth', 'verified'])->name('user.update');
 Route::get('/user/{user}/delete', DeleteUser::class)->middleware(['auth', 'verified'])->name('user.delete');
 
+
+Route::get('/ui/explorer', Explorer::class)->middleware(['auth', 'verified'])->name('ui.explorer');
 
 require __DIR__.'/auth.php';

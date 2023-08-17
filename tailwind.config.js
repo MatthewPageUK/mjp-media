@@ -14,7 +14,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Outfit', ...defaultTheme.fontFamily.sans],
             },
 
             colors: {
@@ -27,6 +27,7 @@ export default {
 
     plugins: [
         forms,
-        require('flowbite/plugin')
+        require('flowbite/plugin'),
+        require('@tailwindcss/typography'),
     ],
 };
