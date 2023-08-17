@@ -40,7 +40,7 @@
 
                     <h1 class="text-4xl text-gray-200 mb-8 tracking-tight">Login to your storage</h1>
 
-                    <div class="text-gray-200 scale-100 p-6 bg-blue-900 bg-gradient-to-l from-blue-800 dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.05] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                    <div class="text-gray-200 p-6 bg-blue-900 bg-gradient-to-tl from-indigo-800 rounded-lg shadow-2xl shadow-gray-500/20 flex">
 
                         <x-auth.login />
 

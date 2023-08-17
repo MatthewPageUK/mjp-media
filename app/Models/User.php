@@ -76,7 +76,7 @@ class User extends Authenticatable
         }
 
         $used = $file_size / 1024 / 1024;
-        $percent = floor($used / $this->capacity * 100);
+        $percent = ceil($used / $this->capacity * 100);
         return $percent;
     }
 

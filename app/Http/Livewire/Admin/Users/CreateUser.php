@@ -105,7 +105,7 @@ class CreateUser extends Component
 
             Storage::makeDirectory($user->storagePath);
 
-            Storage::put($user->storagePath.'/welcome.txt', 'Welcome to your new storage.');
+            Storage::put($user->storagePath.'/welcome.md', '#Welcome to your new storage\n\nHere you can store all your images and media files.\n\n##How to upload\n\nClick the upload file button..\n\n');
 
         } catch (\Exception $e) {
             session()->flash('error', 'Something went wrong. Please try again.');

@@ -20,26 +20,26 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        User::factory()->create([
-            'name' => 'User 1'
-        ]);
+        // User::factory()->create([
+        //     'name' => 'User 1'
+        // ]);
 
-        User::factory()->create([
-            'name' => 'User 2'
-        ]);
+        // User::factory()->create([
+        //     'name' => 'User 2'
+        // ]);
 
-        User::factory()->create([
-            'name' => 'User 3'
-        ]);
+        // User::factory()->create([
+        //     'name' => 'User 3'
+        // ]);
 
-        User::factory()->create([
-            'active' => false
-        ]);
+        // User::factory()->create([
+        //     'active' => false
+        // ]);
 
-        User::factory()->create([
-            'active' => false
-        ]);
+        // User::factory()->create([
+        //     'active' => false
+        // ]);
 
-        User::factory(5)->create();
+        // User::factory(5)->create();
     }
 }

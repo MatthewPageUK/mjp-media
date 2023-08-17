@@ -1,5 +1,5 @@
 
-<x-button {{ $attributes->merge(['class' => 'bg-red-600 text-white hover:bg-red-500 active:bg-red-700 focus:ring-red-500']) }}>
+<x-button {{ $attributes->merge(['class' => 'bg-green-600 text-white hover:bg-green-500 active:bg-green-700 focus:ring-green-500']) }}>
     {{ $slot }}
 </x-button>
 
