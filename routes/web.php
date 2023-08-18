@@ -8,6 +8,7 @@ use App\Http\Livewire\Admin\Users\{
     ReadUser,
     ListUsers,
 };
+use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\User\Explorer;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,7 @@ Route::middleware('guest')->group(function () {
     });
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', Dashboard::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

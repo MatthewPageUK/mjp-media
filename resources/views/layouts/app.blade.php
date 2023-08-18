@@ -135,9 +135,9 @@
 
             <main class="p-4 md:p-16 md:ml-64 h-auto pt-8 md:pt-24">
 
-              <div>
+              {{-- <div>
                 <x-session-messages />
-              </div>
+              </div> --}}
 
                 {{ $slot }}
 

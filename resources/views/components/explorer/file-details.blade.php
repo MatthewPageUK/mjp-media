@@ -8,13 +8,13 @@
         <div class="p-6 space-y-6">
 
             <div class="grid grid-cols-1 gap-8">
-                <dl class="grid grid-cols-2 text-sm">
+                <dl class="grid grid-cols-2 text-sm items-center space-y-2">
                     <dt class="font-bold">Name</dt>
                     <dd>{{ $name }}</dd>
                     <dt class="font-bold">Path</dt>
                     <dd class="overflow-hidden">{{ $path }}</dd>
                     <dt class="font-bold">Size</dt>
-                    <dd>{{ Storage::size($path) }}b</dd>
+                    <dd>{{ Str::humanFileSize(Storage::size($path)) }}</dd>
                     <dt class="font-bold">Mime Type</dt>
                     <dd>{{ Storage::mimeType($path) }}</dd>
                     <dt class="font-bold">Last Modified</dt>
@@ -24,7 +24,7 @@
                 {{-- Preview --}}
                 <div class="max-h-[375px] overflow-auto rounded">
                     @if (Storage::mimeType($path) == 'image/jpeg' || Storage::mimeType($path) == 'image/png')
-                        <img src="{{ Storage::url($path) }}" alt="" class="my-4 w-full">
+                        <img src="{{ Storage::url($path) }}" alt="" class="my-4 w-auto max-h-64">
                     @endif
 
                     @if (Storage::mimeType($path) == 'text/plain')

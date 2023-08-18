@@ -32,7 +32,7 @@ class VirtualStorage
         $used = 0;
         foreach (Storage::allFiles('public/users') as $file)
         {
-            $used += Storage::size($file) / 1024 / 1024;
+            $used += Storage::size($file); // / 1024 / 1024;
         }
 
         return $used;
@@ -49,7 +49,7 @@ class VirtualStorage
         $used = 0;
         foreach (Storage::allFiles($user->storagePath) as $file)
         {
-            $used += Storage::size($file) / 1024 / 1024;
+            $used += Storage::size($file); // / 1024 / 1024;
         }
 
         return $used;
@@ -82,7 +82,7 @@ class VirtualStorage
      */
     public function getAssignedSpace()
     {
-        return User::sum('capacity');
+        return User::sum('capacity') * 1024 * 1024;
     }
 
     /**
@@ -92,7 +92,7 @@ class VirtualStorage
      */
     public function getTotalSpace()
     {
-        return 10000;
+        return 6 * 1024 * 1024 * 1024;
     }
 
 }

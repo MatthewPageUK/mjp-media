@@ -49,6 +49,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getCapacityBytesAttribute()
+    {
+        return $this->capacity * 1024 * 1024;
+    }
     /**
      * Get the total number of files
      *
@@ -83,9 +87,9 @@ class User extends Authenticatable
     /**
      * Total capacity used.
      *
-     * @return int
+     * @return float
      */
-    public function getCapacityUsedAttribute(): int
+    public function getCapacityUsedAttribute(): float
     {
         return VirtualStorage::getUserSpaceUsed($this);
     }
