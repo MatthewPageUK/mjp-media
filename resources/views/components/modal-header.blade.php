@@ -1,6 +1,6 @@
 
-<div class="flex items-start justify-between p-4 bg-blue-700 ">
-    <h3 class="text-2xl font-black tracking-tight text-gray-100">
+<div class="flex items-start justify-between p-4 bg-primary-700 ">
+    <h3 class="text-2xl font-black tracking-tight text-secondary-400">
         {{ $title }}
     </h3>
     <button

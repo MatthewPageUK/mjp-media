@@ -89,15 +89,15 @@ foreach( Storage::allFiles(Auth::user()->storagePath) as $file)
 
                 <div class="space-y-4 md:space-y-8">
                     <h1 class="text-4xl md:text-6xl md:px-8 text-center md:text-left font-black tracking-tight text-gray-100">Storage Capacity</h1>
-                    <p class="text-4xl md:text-6xl font-black px-12 py-4 text-center md:text-left bg-green-300 rounded-full">{{ Auth::user()->capacity }}Mb</p>
+                    <p class="text-highlight-900 transition-all hover:scale-110 text-4xl md:text-6xl font-black px-12 py-4 text-center md:text-left bg-highlight-300 rounded-full">{{ Auth::user()->capacity }}Mb</p>
                 </div>
 
                 <div class="space-y-4 md:space-y-8">
                     <h1 class="text-4xl md:text-6xl md:px-8 text-center md:text-left font-black tracking-tight text-gray-100">Storage Used</h1>
 
-                    <div class="text-2xl md:text-5xl font-black px-12 py-4 text-center md:text-left  bg-amber-300 rounded-full">{{ number_format($file_size / 1000000, 2) }} Mb in {{ $files }} files
-                        <div class="w-full bg-amber-400 rounded-full mt-2">
-                            <div class="bg-amber-600 text-xs font-black text-amber-300 text-center p-1 leading-none rounded-full" style="width: {{ Auth::user()->capacityUsedPercent }}%">
+                    <div class="text-secondary-900 transition-all hover:scale-110 text-2xl md:text-5xl font-black px-12 py-4 text-center md:text-left  bg-secondary-300 rounded-full">{{ number_format($file_size / 1000000, 2) }} Mb in {{ $files }} files
+                        <div class="w-full bg-secondary-400 rounded-full mt-2">
+                            <div class="bg-secondary-600 text-xs font-black text-secondary-300 text-center p-1 leading-none rounded-full" style="width: {{ Auth::user()->capacityUsedPercent }}%">
                                 {{ Auth::user()->capacityUsedPercent }}%
                             </div>
                         </div>

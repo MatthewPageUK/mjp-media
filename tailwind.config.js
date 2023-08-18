@@ -18,9 +18,10 @@ export default {
             },
 
             colors: {
-                primary: colors.red,
+                primary: colors.blue,
                 secondary: colors.amber,
                 highlight: colors.purple,
+                button: colors.blue,
             },
         },
     },

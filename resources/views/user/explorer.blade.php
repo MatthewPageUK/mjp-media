@@ -61,13 +61,51 @@
 
 
     {{-- <h2>Files</h2> --}}
+
+    @if ($this->mode === 'list')
+
+        <table class="w-full table-auto text-gray-100 text-sm">
+            <thead>
+                <tr class="border-b border-gray-400 text-gray-400 text-xs">
+                    <th class="w-8 font-light"></th>
+                    <th class="text-left pb-2 font-light">Name</th>
+                    <th class="hidden lg:table-cell text-left w-48 pb-2 font-light">Type</th>
+                    <th class="hidden lg:table-cell text-left w-24 pb-2 font-light">Size</th>
+                    <th class="text-right w-24 pb-2 font-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($this->files as $file)
+                    <x-explorer.file :name="$file['name']" :path="$file['path']" :mode="$this->mode" />
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-5xl tracking-tight font-light text-center my-16 opacity-70">No files found</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+    @else
+
+        <div class="text-sm text-gray-100 space-y-2 grid grid-cols-1 lg:grid-cols-4 gap-16">
+            @forelse ($this->files as $file)
+                <x-explorer.file :name="$file['name']" :path="$file['path']" :mode="$this->mode" />
+            @empty
+                No files found
+
+            @endforelse
+        </div>
+
+    @endif
+
+{{--
     <div class="XXborder XXpx-4 XXpy-2 XXbg-white text-sm text-gray-100 space-y-2 @if($this->mode === 'preview') grid grid-cols-1 lg:grid-cols-4 gap-8 @endif">
         @forelse ($this->files as $file)
             <x-explorer.file :name="$file['name']" :path="$file['path']" :mode="$this->mode" />
         @empty
             <p class="text-5xl tracking-tight font-light text-center my-16 opacity-70">No files found</p>
         @endforelse
-    </div>
+    </div> --}}
 
     @if ($this->showFileUpload)
         <x-explorer.file-upload />
@@ -99,7 +137,7 @@
                 <div class="mt-2 mb-4 text-sm">
                     <p>This action will delete the directory and remove all stored files or other directories in it. This action can not be un-done or reversed.</p>
                     <p class="mt-8">
-                    <input type="checkbox" wire:model="confirmDeleteDirectory" value="1" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2">
+                    <input type="checkbox" wire:model="confirmDeleteDirectory" value="1" class="form-checkbox h-4 w-4 text-primary-600 transition duration-150 ease-in-out mr-2">
                         I confirm deleting this directory and all files.
                     </p>
                     <x-input-error :messages="$errors->get('confirmDeleteDirectory')" />

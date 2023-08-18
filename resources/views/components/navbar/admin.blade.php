@@ -1,9 +1,9 @@
 <aside
-  class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-blue-800 border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+  class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-primary-800 border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
   aria-label="Sidenav"
   id="drawer-navigation"
 >
-<div class="overflow-y-auto py-5 px-3 h-full bg-blue-900 dark:bg-gray-800">
+<div class="overflow-y-auto py-5 px-3 h-full bg-primary-900 dark:bg-gray-800">
   <form action="#" method="GET" class="md:hidden mb-2">
     <label for="sidebar-search" class="sr-only">Search</label>
     <div class="relative">
@@ -39,7 +39,7 @@
     <li>
       <a
         href="{{ route('dashboard') }}"
-        class="flex items-center p-2 text-base font-medium text-gray-200 rounded-lg dark:text-white hover:bg-blue-200 hover:text-gray-800 dark:hover:bg-gray-700 group"
+        class="flex items-center p-2 text-base font-medium text-gray-200 rounded-lg dark:text-white hover:bg-primary-200 hover:text-gray-800 dark:hover:bg-gray-700 group"
       >
         <svg
           aria-hidden="true"
@@ -57,7 +57,7 @@
     <li>
       <a
         href="{{ route('users') }}"
-        class="flex items-center p-2 w-full text-base font-medium text-gray-200 rounded-lg transition duration-75 group hover:bg-blue-200 hover:text-gray-800  dark:hover:bg-gray-700"
+        class="flex items-center p-2 w-full text-base font-medium text-gray-200 rounded-lg transition duration-75 group hover:bg-primary-200 hover:text-gray-800  dark:hover:bg-gray-700"
       >
         <svg
           aria-hidden="true"
@@ -81,7 +81,7 @@
     {{-- <li>
       <button
         type="button"
-        class="flex items-center p-2 w-full text-base font-medium text-gray-200 rounded-lg transition duration-75 group hover:bg-blue-200 hover:text-gray-800 "
+        class="flex items-center p-2 w-full text-base font-medium text-gray-200 rounded-lg transition duration-75 group hover:bg-primary-200 hover:text-gray-800 "
         aria-controls="dropdown-sales"
         data-collapse-toggle="dropdown-sales"
       >

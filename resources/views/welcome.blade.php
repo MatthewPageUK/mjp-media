@@ -26,7 +26,7 @@
 
                     <h1 class="text-4xl text-gray-200 mb-8 tracking-tight">Login to your storage</h1>
 
-                    <div class="text-gray-200 p-6 bg-blue-900 bg-gradient-to-tl from-indigo-800 rounded-lg shadow-2xl shadow-gray-500/20 flex">
+                    <div class="text-gray-200 p-6 bg-primary-900 bg-gradient-to-tl from-indigo-800 rounded-lg shadow-2xl shadow-gray-500/20 flex">
 
                         <x-auth.login />
 

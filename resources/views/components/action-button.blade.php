@@ -1,5 +1,8 @@
 
-<x-button {{ $attributes->merge(['class' => 'border-0 bg-gradient-to-bl from-blue-500 to-blue-800 text-gray-200 hover:text-amber-300 hover:from-blue-600 hover:to-blue-900 active:bg-green-700 focus:ring-green-500']) }}>
+<x-button {{ $attributes->merge(['class' => 'border-0
+    bg-gradient-to-b from-button-500 to-button-800
+    text-gray-200 hover:text-secondary-300
+    hover:from-button-500 hover:to-button-700 hover:shadow-lg active:bg-green-700 focus:ring-green-500']) }}>
     {{ $slot }}
 </x-button>
 

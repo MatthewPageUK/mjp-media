@@ -4,7 +4,7 @@
 
     <x-modal-header title="File details" wire:click.prevent="deselectFile" />
 
-    <div class="bg-gradient-to-tr from-blue-600 to-blue-900 text-gray-100">
+    <div class="bg-gradient-to-tr from-primary-600 to-primary-900 text-gray-100">
         <div class="p-6 space-y-6">
 
             <div class="grid grid-cols-1 gap-8">

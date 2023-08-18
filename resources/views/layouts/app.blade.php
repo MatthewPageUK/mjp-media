@@ -18,7 +18,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen font-sans text-gray-900 antialiased bg-gradient-to-tr from-blue-600 to-blue-900"
+    <body class="min-h-screen font-sans text-gray-900 antialiased bg-gradient-to-tr from-primary-600 to-primary-900"
 
         x-data="{
             usermenuopen: false
@@ -32,7 +32,7 @@
 
 
         <div class="antialiased ">
-            <nav class="shadow-lg bg-gradient-to-br from-blue-600 to-blue-900 XXborder-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+            <nav class="shadow-lg bg-gradient-to-br from-primary-600 to-primary-900 XXborder-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
               <div class="flex justify-between items-center">
                 <div class="flex justify-start items-center">
                   {{-- Sidebar toggle --}}
@@ -49,8 +49,8 @@
                     <span class="sr-only">Toggle sidebar</span>
                   </button>
                   {{-- Logo --}}
-                  <a href="/" class="flex items-center justify-between mr-4">
-                    <img src="/images/logo1.png" class="mr-6 h-8" alt="MJP Media Manager Logo" />
+                  <a href="/" class="mr-4">
+                    <x-application-logo class="w-48" />
                   </a>
 
                 </div>

@@ -3,7 +3,7 @@
     <x-modal-header title="Upload a file" wire:click.prevent="cancelFileUpload" />
 
 
-    <div class="p-6 space-y-6 bg-gradient-to-tr from-blue-600 to-blue-900">
+    <div class="p-6 space-y-6 bg-gradient-to-tr from-primary-600 to-primary-900">
         <form action="#">
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
 
