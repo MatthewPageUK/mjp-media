@@ -18,7 +18,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-blue-100"
+    <body class="min-h-screen font-sans text-gray-900 antialiased bg-gradient-to-tr from-blue-600 to-blue-900"
 
         x-data="{
             usermenuopen: false
@@ -32,7 +32,7 @@
 
 
         <div class="antialiased ">
-            <nav class="bg-blue-700 border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+            <nav class="shadow-lg bg-gradient-to-br from-blue-600 to-blue-900 XXborder-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
               <div class="flex justify-between items-center">
                 <div class="flex justify-start items-center">
                   {{-- Sidebar toggle --}}
@@ -133,12 +133,11 @@
 
 
 
-            <main class="p-4 md:ml-64 h-auto pt-20">
+            <main class="p-4 md:p-16 md:ml-64 h-auto pt-8 md:pt-24">
 
               <div>
                 <x-session-messages />
               </div>
-
 
                 {{ $slot }}
 

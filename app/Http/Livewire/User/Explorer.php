@@ -29,6 +29,8 @@ class Explorer extends Component
 
     public $showFileUpload = false;
 
+    public $mode = 'list';
+
     /**
      * Files
      *
@@ -45,7 +47,7 @@ class Explorer extends Component
             return [
                 'newDirectory' => [
                     'required',
-                    'max:16',
+                    'max:32',
                     'regex:/^[a-z0-9-]+$/',
                     Rule::notIn(collect($this->directories)->pluck('name')->toArray()),
                 ],
@@ -59,6 +61,16 @@ class Explorer extends Component
         }
 
         return [];
+    }
+
+    public function setListMode()
+    {
+        $this->mode = 'list';
+    }
+
+    public function setPreviewMode()
+    {
+        $this->mode = 'preview';
     }
 
     public function messages()
@@ -153,6 +165,7 @@ class Explorer extends Component
     public function getFileURL(?string $file = null)
     {
         if ($file) {
+            return Storage::url($file);
             return;
             $this->selectFile($file);
         }

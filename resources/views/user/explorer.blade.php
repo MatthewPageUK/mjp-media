@@ -1,41 +1,51 @@
-<div>
+<div class="mt-12 lg:mt-0">
     <x-session-messages />
 
-    <div class="flex items-center gap-2 mb-8">
-        <h1 class="flex-1 text-4xl">File Explorer</h1>
+    <div class="md:flex items-center gap-2 mb-8 space-y-4">
+        <h1 class="flex-1 text-4xl md:text-6xl font-black tracking-tight text-gray-100">File Explorer</h1>
 
         <x-action-button wire:click.prevent="showCreateDirectory">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
             </svg>
-            Create Directory
+            <span class="hidden sm:inline">Create Directory</span>
         </x-action-button>
 
         <x-action-button wire:click.prevent="showFileUpload()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
             </svg>
-            Upload File
+            <span class="hidden sm:inline">Upload File</span>
         </x-action-button>
+
+        @switch ($this->mode)
+
+            @case ('preview')
+                <x-action-button wire:click.prevent="setListMode" title="View files in a list">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                </x-action-button>
+            @break
+
+            @default
+                <x-action-button wire:click.prevent="setPreviewMode" title="View files in a grid with image preview">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                    </svg>
+
+                </x-action-button>
+
+        @endswitch
     </div>
 
-    <p class="flex gap-2 border rounded-lg px-4 py-2 bg-white font-mono mb-2">
-        <span>Location : </span>
-        <span class="flex-1">/home{{ $directory }}</span>
-        @if ($this->directory !== '/')
-            <button wire:click.prevent="showDeleteDirectory" title="Delete this directory">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
-                </svg>
-            </button>
-        @endif
-    </p>
+    <x-explorer.location-bar :directory="$directory" />
 
     {{-- <h2 class="text-lg font-semibold my-4">Directories</h2> --}}
 
-    <div class="grid grid-cols-4 gap-4 border rounded-lg px-4 py-2 bg-white text-sm">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 XXborder rounded-lg XXpx-4 XXpy-2 XXbg-white text-gray-100 text-sm mb-8">
         @if ($this->directory !== '/')
-            <button wire:click.prevent="goUp">
+            <button wire:click.prevent="goUp" class="p-2 hover:text-gray-900 hover:bg-gray-100 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
                 </svg>
@@ -51,11 +61,11 @@
 
 
     {{-- <h2>Files</h2> --}}
-    <div class="border rounded-lg px-4 py-2 bg-white text-sm">
+    <div class="XXborder XXpx-4 XXpy-2 XXbg-white text-sm text-gray-100 space-y-2 @if($this->mode === 'preview') grid grid-cols-1 lg:grid-cols-4 gap-8 @endif">
         @forelse ($this->files as $file)
-            <x-explorer.file :name="$file['name']" :path="$file['path']" />
+            <x-explorer.file :name="$file['name']" :path="$file['path']" :mode="$this->mode" />
         @empty
-            <p class="text-center my-4">No files found.</p>
+            <p class="text-5xl tracking-tight font-light text-center my-16 opacity-70">No files found</p>
         @endforelse
     </div>
 

@@ -1,6 +1,6 @@
-@props(['name' => '', 'path' => ''])
+@props(['name' => '', 'path' => '', 'mode' => 'list'])
 
-<div class="rounded-lg border-b border-white py-2 hover:border-blue-500 text-xs flex items-center gap-2">
+<div class="border-b border-gray-400 py-2 text-xs @if($mode === 'list') flex items-center gap-2 @endif">
 
     @switch (Storage::mimeType($path))
 
@@ -30,13 +30,18 @@
 
     @endswitch
 
+    @if ($mode === 'preview')
+
+            <img src="{{ $this->getFileURL($path) }}" class="w-auto max-h-96 rounded-lg shadow-lg" />
+
+    @endif
     <button wire:click.prevent="showFile('{{ $name }}')" class="flex-1 text-left">
         {{ $name }}
     </button>
 
-    <span class="text-gray-500">{{ Storage::mimeType($path) }}</span>
+    <span class="hidden lg:inline text-gray-500">{{ Storage::mimeType($path) }}</span>
 
-    <span class="py-1 px-2 rounded-lg text-xs font-bold bg-blue-300">
+    <span class="hidden lg:inline py-1 px-2 rounded-lg text-xs font-bold bg-blue-300">
         {{ Storage::size($path) }}b
     </span>
 
@@ -48,7 +53,7 @@
     </button>
 
     {{-- Open URL button --}}
-    <a href="{{ $this->getFileURL($name) }}" target="_blank">
+    <a href="{{ $this->getFileURL($path) }}" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
         </svg>

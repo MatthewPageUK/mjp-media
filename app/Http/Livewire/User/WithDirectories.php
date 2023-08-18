@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 trait WithDirectories
 {
@@ -58,6 +59,7 @@ trait WithDirectories
      */
     public function updatedNewDirectory($value): void
     {
+        $this->newDirectory = Str::fileSlug($value, '-');
         $this->validateOnly('newDirectory');
     }
 

@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 md:py-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
 
             @if (Auth::user()->isAdmin())
@@ -68,7 +68,10 @@ foreach( Storage::allFiles('public/users') as $file)
 
             @if (! Auth::user()->isAdmin())
 
-            {{-- User --}}
+{{-- User --}}
+
+
+
 @php
 $file_size = 0;
 $files = 0;
@@ -79,47 +82,30 @@ foreach( Storage::allFiles(Auth::user()->storagePath) as $file)
 }
 // echo number_format($file_size / 1048576,2);
 @endphp
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 flex gap-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                    </svg>
-                    <div class="grid grid-cols-4 gap-4 flex-1 text-gray-700">
-                        <span class="font-light">Storage assigned : </span>
-                        <span class="col-span-3">
-                            <span class="inline-block text-sm font-black px-4 py-1 border bg-green-300 rounded-full">{{ Auth::user()->capacity }}Mb</span>
-                        </span>
-                        <span class="font-light">Storage used : </span>
-                        <span class="col-span-3">
-                            <span class="inline-block text-sm font-black px-4 py-1 border bg-amber-300 rounded-full">{{ number_format($file_size / 1000000, 2) }} Mb in {{ $files }} files</span>
-                        </span>
 
-                        <span></span>
-                        <div class="col-span-3 w-full bg-gray-300 rounded-full dark:bg-gray-700">
-                            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {{ Auth::user()->capacityUsedPercent }}%"> {{ Auth::user()->capacityUsedPercent }}%</div>
+
+            <div class="space-y-8 md:space-y-32">
+                <p class="md:px-12 text-center text-gray-100 text-4xl font-light md:text-right">Welcome back {{ Auth::user()->name }}.</p>
+
+                <div class="space-y-4 md:space-y-8">
+                    <h1 class="text-4xl md:text-6xl md:px-8 text-center md:text-left font-black tracking-tight text-gray-100">Storage Capacity</h1>
+                    <p class="text-4xl md:text-6xl font-black px-12 py-4 text-center md:text-left bg-green-300 rounded-full">{{ Auth::user()->capacity }}Mb</p>
+                </div>
+
+                <div class="space-y-4 md:space-y-8">
+                    <h1 class="text-4xl md:text-6xl md:px-8 text-center md:text-left font-black tracking-tight text-gray-100">Storage Used</h1>
+
+                    <div class="text-2xl md:text-5xl font-black px-12 py-4 text-center md:text-left  bg-amber-300 rounded-full">{{ number_format($file_size / 1000000, 2) }} Mb in {{ $files }} files
+                        <div class="w-full bg-amber-400 rounded-full mt-2">
+                            <div class="bg-amber-600 text-xs font-black text-amber-300 text-center p-1 leading-none rounded-full" style="width: {{ Auth::user()->capacityUsedPercent }}%">
+                                {{ Auth::user()->capacityUsedPercent }}%
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 flex items-center gap-4">
-                    <x-action-button>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                          </svg>
-
-                        Manage your files
-                    </x-action-button>
-
-                    <x-action-button>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
-                          </svg>
-                        Backup your storage
-                    </x-action-button>
                 </div>
             </div>
+
         @endif
         </div>
     </div>

@@ -1,9 +1,9 @@
 <aside
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-blue-800 border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-blue-800 md:bg-transparent XXborder-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidenav"
     id="drawer-navigation"
 >
-    <div class="overflow-y-auto py-5 px-3 h-full bg-blue-900 dark:bg-gray-800">
+    <div class="overflow-y-auto py-5 px-3 h-full XXbg-blue-900 dark:bg-gray-800">
 
 
         <ul class="space-y-2">
