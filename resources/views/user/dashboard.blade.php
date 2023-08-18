@@ -25,12 +25,10 @@
 
                     {{ Str::humanFileSize(Auth::user()->capacityUsed) }} in {{ Auth::user()->totalFiles }} files
                     {{-- Capacity progress --}}
-                    <div class="w-full bg-secondary-400 rounded-full mt-2">
-                        <div class="bg-secondary-600 text-xs font-black text-secondary-300 text-center p-1 leading-none rounded-full" style="width: {{ Auth::user()->capacityUsedPercent }}%">
-                            {{ Auth::user()->capacityUsedPercent }}%
-                        </div>
-                    </div>
+                    <x-progress-bar :percent="Auth::user()->capacityUsedPercent" />
                 </div>
+
+
 
             </div>
         </div>

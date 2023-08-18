@@ -4,7 +4,7 @@ namespace App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class VirtualStorage extends Facade
+class UserStorage extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class VirtualStorage extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return \App\Services\VirtualStorage::class;
+        return \App\Services\UserStorage::class;
     }
 }

@@ -54,7 +54,7 @@
 
         </div>
 
-        <div class="flex items-center p-6 space-x-2 XXborder-t border-gray-200 rounded-b XXbg-white">
+        <div class="flex items-center p-6 space-x-2 rounded-b">
             {{-- Download --}}
             <x-action-button wire:click.prevent="downloadFile()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">

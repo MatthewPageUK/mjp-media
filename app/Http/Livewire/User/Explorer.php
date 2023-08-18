@@ -54,11 +54,11 @@ class Explorer extends Component
             ];
         }
 
-        if ($this->showDeleteDirectory) {
-            return [
-                'confirmDeleteDirectory' => 'accepted',
-            ];
-        }
+        // if ($this->showDeleteDirectory) {
+        //     return [
+        //         'confirmDeleteDirectory' => 'accepted',
+        //     ];
+        // }
 
         return [];
     }

@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
 
 
-            <div class="XXbg-white overflow-hidden border-b">
+            <div class="overflow-hidden border-b">
 
                 <div class="py-8 flex items-center gap-8">
 
@@ -25,23 +25,35 @@
                 </div>
             </div>
 
-            <div class="XXbg-white overflow-hidden border-b">
+            <div class="overflow-hidden border-b">
                 <div class="py-8 text-gray-100 flex items-center gap-8">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                     </svg>
                     <div class="flex-1 grid grid-cols-4 gap-x-4 gap-y-2 items-center text-3xl">
                         <span class="">Assigned</span>
-                        <span class="col-span-3">{{ Str::humanFileSize(VirtualStorage::getTotalSpace()) }}</span>
+                        <span class="col-span-3">{{ Str::humanFileSize(UserStorage::getTotalSpace()) }}</span>
 
                         <span class="">Assigned to users</span>
-                        <span class="col-span-3">{{ Str::humanFileSize(VirtualStorage::getAssignedSpace()) }}</span>
+                        <span class="col-span-3">{{ Str::humanFileSize(UserStorage::getAssignedSpace()) }}</span>
+
+                        <span class=""></span>
+                        <div class="col-span-2">
+                            <x-progress-bar :total="UserStorage::getTotalSpace()" :value="UserStorage::getAssignedSpace()" />
+                        </div>
+                        <span class=""></span>
 
                         <span class="">Un-assigned</span>
-                        <span class="col-span-3">{{ Str::humanFileSize(VirtualStorage::getUnassignedSpace()) }}</span>
+                        <span class="col-span-3">{{ Str::humanFileSize(UserStorage::getUnassignedSpace()) }}</span>
 
                         <span class="">Used</span>
-                        <span class="col-span-3">{{ Str::humanFileSize(VirtualStorage::getUsedSpace()) }} in {{ VirtualStorage::getTotalFiles() }} files</span>
+                        <span class="col-span-3">{{ Str::humanFileSize(UserStorage::getUsedSpace()) }} in {{ UserStorage::getTotalFiles() }} files</span>
+                        <span class=""></span>
+                        <div class="col-span-2">
+                            <x-progress-bar :total="UserStorage::getTotalSpace()" :value="UserStorage::getUsedSpace()" />
+                        </div>
+                        <span class=""></span>
+
                     </div>
                 </div>
             </div>

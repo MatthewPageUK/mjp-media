@@ -182,7 +182,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'VirtualStorage' => App\Facades\VirtualStorage::class,
+        'UserStorage' => App\Facades\UserStorage::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

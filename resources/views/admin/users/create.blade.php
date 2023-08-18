@@ -9,7 +9,7 @@
         </x-action-button>
     </div>
 
-    <div class="xxbg-white overflow-hidden">
+    <div class="overflow-hidden">
         <form action="#">
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 {{-- Name --}}
@@ -45,7 +45,7 @@
                     <x-input-label for="capacity" value="Storage capacity (Mb)" class="text-gray-100" />
                     <div class="flex items-center">
                         <x-text-input wire:model.lazy="user.capacity" type="number" />
-                        <span class="ml-2 text-gray-300 whitespace-nowrap text-sm font-bold">{{ Str::humanFileSize(VirtualStorage::getUnassignedSpace()) }} unassigned.</span>
+                        <span class="ml-2 text-gray-300 whitespace-nowrap text-sm font-bold">{{ Str::humanFileSize(UserStorage::getUnassignedSpace()) }} unassigned.</span>
                     </div>
                     <x-input-error :messages="$errors->get('user.capacity')" />
                 </div>

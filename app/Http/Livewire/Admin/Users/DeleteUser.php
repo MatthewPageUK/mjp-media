@@ -61,6 +61,7 @@ class DeleteUser extends Component
      */
     public function suspend()
     {
+        // reset login token @todo
         $this->user->active = false;
         $this->user->save();
 

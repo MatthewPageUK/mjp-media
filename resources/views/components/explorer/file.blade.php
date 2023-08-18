@@ -4,7 +4,7 @@
 
 @if ($mode === 'list')
 
-    <tr class="border-gray-400 hover:border-b XXhover:bg-gradient-to-b hover:from-primary-600 hover:to-primary-900">
+    <tr class="border-gray-400 hover:border-b">
         <td class="py-3">
             @switch (Storage::mimeType($path))
 
@@ -74,7 +74,7 @@
 
 @else
 
-<div class="border-b border-gray-400 text-sm flex flex-wrap items-start XXhover:border hover:p-4 hover:rounded-lg hover:bg-gradient-to-b hover:from-primary-600 hover:to-primary-900 transition-all">
+<div class="border-b border-gray-400 text-sm flex flex-wrap items-start hover:p-4 hover:rounded-lg hover:bg-gradient-to-b hover:from-primary-600 hover:to-primary-900 transition-all">
 
     <button wire:click.prevent="showFile('{{ $name }}')" class="w-full text-left">
         <img src="{{ $this->getFileURL($path) }}" class="w-auto max-h-96 rounded-lg" />

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
-use App\Facades\VirtualStorage;
+use App\Facades\UserStorage;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -26,7 +26,7 @@ class CreateUser extends Component
             'user.email' => 'required|email|max:255|unique:users,email',
             'user.directory' => ['required', 'max:16', 'unique:users,directory', 'regex:/^[a-z0-9-]+$/'],
             'user.active' => 'required|boolean',
-            'user.capacity' => 'required|integer|min:1|max:' . VirtualStorage::getUnassignedSpace(),
+            'user.capacity' => 'required|integer|min:1|max:' . floor(UserStorage::getUnassignedSpace() / 1024 / 1024),
             'user.password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }

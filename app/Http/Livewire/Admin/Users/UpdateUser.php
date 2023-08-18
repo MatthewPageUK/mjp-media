@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
-use App\Facades\VirtualStorage;
+use App\Facades\UserStorage;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Validation\Rules;
@@ -24,7 +24,7 @@ class UpdateUser extends Component
             'user.email' => 'required|email|max:255|unique:users,email,' . $this->user->id,
             'user.directory' => ['required', 'max:16', 'unique:users,directory,' . $this->user->id, 'regex:/^[a-z0-9-]+$/'],
             'user.active' => 'required|boolean',
-            'user.capacity' => 'required|integer|min:1|max:' . VirtualStorage::getUnassignedSpace(),
+            'user.capacity' => 'required|integer|min:1|max:' . UserStorage::getUnassignedSpace(),
             // 'user.password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 trait WithDirectories
 {
@@ -70,7 +71,7 @@ trait WithDirectories
      */
     public function setDirectories(): void
     {
-        $this->directories = collect(Storage::directories(Auth::user()->storagePath . $this->directory))
+        $this->directories = collect(Auth::user()->disk->directories($this->directory))
             ->map(function ($directory) {
                 return [
                     'name' => basename($directory),
@@ -133,16 +134,25 @@ trait WithDirectories
      */
     public function createDirectory()
     {
-        $this->validate();
 
-        if (Storage::makeDirectory(Auth::user()->storagePath . $this->directory . $this->newDirectory)) {
+        // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        $this->validate([
+            'newDirectory' => [
+                'required',
+                'max:32',
+                'regex:/^[a-z0-9-]+$/',
+                Rule::notIn(collect($this->directories)->pluck('name')->toArray()),
+            ],
+        ]);
+
+        if (Auth::user()->disk->makeDirectory($this->directory . $this->newDirectory)) {
             session()->flash('success', 'Directory created successfully.');
         } else {
             session()->flash('error', 'Directory could not be created.');
         }
 
+        $this->appendDirectory($this->newDirectory);
         $this->cancelCreateDirectory();
-
         $this->setDirectories();
         $this->setFiles();
 
@@ -177,9 +187,11 @@ trait WithDirectories
      */
     public function deleteDirectory()
     {
-        $this->validate();
+        $this->validate([
+            'confirmDeleteDirectory' => 'accepted',
+        ]);
 
-        if (Storage::deleteDirectory(Auth::user()->storagePath . $this->directory)) {
+        if (Auth::user()->disk->deleteDirectory($this->directory)) {
             session()->flash('success', 'Directory deleted successfully.');
             $this->goUp();
 

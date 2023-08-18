@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Facades\VirtualStorage;
+use App\Facades\UserStorage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,6 +49,19 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * Get the users disk
+     *
+     * @return \Illuminate\Contracts\Filesystem\Filesystem
+     */
+    public function getDiskAttribute()
+    {
+        return Storage::build([
+            'driver' => 'local',
+            'root' => Storage::path($this->storagePath),
+        ]);
+    }
+
     public function getCapacityBytesAttribute()
     {
         return $this->capacity * 1024 * 1024;
@@ -60,7 +73,7 @@ class User extends Authenticatable
      */
     public function getTotalFilesAttribute(): int
     {
-        return sizeof(Storage::allFiles($this->storagePath));
+        return UserStorage::getTotalFiles($this);
     }
 
     /**
@@ -70,17 +83,7 @@ class User extends Authenticatable
      */
     public function getCapacityUsedPercentAttribute(): int
     {
-
-        $file_size = 0;
-        $files = 0;
-        foreach( Storage::allFiles($this->storagePath) as $file)
-        {
-            $file_size += Storage::size($file);
-            $files++;
-        }
-
-        $used = $file_size / 1024 / 1024;
-        $percent = ceil($used / $this->capacity * 100);
+        $percent = ceil(($this->capacityUsed / 1024 / 1024) / $this->capacity * 100);
         return $percent;
     }
 
@@ -91,7 +94,7 @@ class User extends Authenticatable
      */
     public function getCapacityUsedAttribute(): float
     {
-        return VirtualStorage::getUserSpaceUsed($this);
+        return UserStorage::getUsedSpace($this);
     }
 
     /**
@@ -101,7 +104,7 @@ class User extends Authenticatable
      */
     public function getStoragePathAttribute(): string
     {
-        return sprintf('public/users/%s', $this->directory);
+        return sprintf('%s/%s', UserStorage::getBaseDirectory(), $this->directory);
     }
 
     /**

@@ -1,6 +1,6 @@
 @props(['directory'])
 
-<p class="flex gap-2 XXborder rounded-lg XXpx-4 XXpy-2 XXbg-white text-gray-100 font-mono mb-8">
+<p class="flex gap-2 rounded-lg text-gray-100 font-mono mb-8">
     <span>Location : </span>
     <span class="flex-1">/home{{ $directory }}</span>
     @if ($this->directory !== '/')
