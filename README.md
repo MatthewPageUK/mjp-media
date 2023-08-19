@@ -99,6 +99,15 @@ colors: {
 },
 ```
 
+## Screen shots
+
+File explorer
+
+![image](https://github.com/MatthewPageUK/mjp-media/assets/46349796/a7c81e07-f3de-4fc6-8db8-73e5d62b1a8f)
+
+Admin dashboard
+
+![image](https://github.com/MatthewPageUK/mjp-media/assets/46349796/6953c135-0c4f-422f-8c49-b4927977b4db)
 
 ## License
 
