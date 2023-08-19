@@ -186,7 +186,13 @@ class Explorer extends Component
     public function uploadFile()
     {
         $this->validate([
-            'newFile' => 'required|file|max:10240',
+            // 'newFile' => 'required|file|max:10240',
+            'newFile' => [
+                'required',
+                'file',
+                'max:10240',
+                'mimetypes:'.implode(',', config('app.allowed_mime_types')),
+            ],
             'newFileName' => [
                 'required',
                 'max:255',
@@ -195,6 +201,7 @@ class Explorer extends Component
         ], [
             'newFile.required' => 'Please select a file to upload.',
             'newFile.max' => 'File size must be less than 10MB.',
+            'newFile.mimetypes' => 'File type not allowed.',
             'newFileName.required' => 'Please enter a file name.',
             'newFileName.max' => 'File name must be less than 255 characters.',
             'newFileName.not_in' => 'File name already exists.',

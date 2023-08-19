@@ -31,7 +31,7 @@
                         <pre class="my-4 text-xs">{{ Storage::get($path) }}</pre>
                     @endif
 
-                    @if (Storage::mimeType($path) == 'text/markdown')
+                    @if (Storage::mimeType($path) == 'text/markdown' || Storage::mimeType($path) == 'text/html')
                         <div class="prose prose-sm p-6 bg-gray-200">
 
                             {!! Str::markdown(Storage::get($path)) !!}

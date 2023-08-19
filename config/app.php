@@ -7,6 +7,42 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Allowed upload mime types
+    |--------------------------------------------------------------------------
+    |
+    | List of mime types that are allowed to be uploaded. This is used to
+    | validate the uploaded files.
+    |
+    */
+
+    'allowed_mime_types' => [
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'image/bmp',
+        'image/svg+xml',
+        'video/mp4',
+        'video/quicktime',
+        'video/x-msvideo',
+        'video/x-ms-wmv',
+        'video/x-flv',
+        'video/webm',
+        'video/ogg',
+        'audio/mpeg',
+        'audio/mp4',
+        'audio/ogg',
+        'audio/wav',
+        'audio/x-wav',
+        'audio/webm',
+        'application/pdf',
+        'text/plain',
+        'text/markdown',
+        'text/x-markdown',
+        'text/html',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |

@@ -139,6 +139,17 @@ class User extends Authenticatable
     }
 
     /**
+     * Scope the query to 'admins' (not users)
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAdmins($query): Builder
+    {
+        return $query->where('is_admin', true);
+    }
+
+    /**
      * Scope the query to only include active users.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query

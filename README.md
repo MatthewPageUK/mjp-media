@@ -5,10 +5,99 @@
 
 # MJP Media Manager
 
-A simple media manager for uploading and storing images.
+A simple multi-user web based media manager for uploading and storing images. Built with Laravel, Livewire and Tailwind CSS.
 
-Multi user
+- [Features](#features)
+- [Installation](#installation)
+- [Colours](#colours)
+- [License](#license)
 
+## Features
+
+- Web based media manager
+- Create users and assign storage capacity
+- Upload images and other files
+- Create folders and sub-folders
+- File explorer
+- Embedded explorer to integrate with other applications
+
+## Installation
+
+Clone the repo
+
+```bash
+git clone
+```
+
+Launch the docker containers
+
+```bash
+sail up -d
+```
+
+Install composer dependencies
+
+```bash
+sail composer install
+```
+
+Install npm dependencies
+
+```bash
+sail npm install
+```
+
+Create a .env file and edit as necessary
+
+```bash
+cp .env.example .env
+```
+
+Generate an app key
+
+```bash
+sail artisan key:generate
+```
+
+Setup the application
+
+```bash
+sail artisan mmm:setup
+```
+
+Or setup with demo data and users
+
+```bash
+sail artisan mmm:setup-demo
+```
+
+You can now login with the default user:
+
+```bash
+email: demo@example.com
+password: password
+```
+
+> Remember to change the default user password!
+
+You can reset the application, delete all users and files:
+
+```bash
+sail artisan mmm:reset
+```
+
+## Colours
+
+You can easily change the colour theme in the ```tailwind.config.js``` file by changing the settings to any of the standard Tailwind colours.
+
+```javascript
+colors: {
+    primary: colors.blue,
+    secondary: colors.amber,
+    highlight: colors.purple,
+    button: colors.sky,
+},
+```
 
 
 ## License

@@ -17,6 +17,7 @@
                 >
                     <!-- File Input -->
                     <input type="file" wire:model="newFile" class="text-gray-100">
+                    <x-input-error :messages="$errors->get('newFile')" />
 
                     <!-- Progress Bar -->
                     <div x-show="isUploading">
@@ -26,7 +27,7 @@
 
             @if ($this->newFile)
 
-
+{{ $this->newFile->getMimeType() }}}
                 {{-- File Name --}}
                 <div class="col-span-2 md:col-span-1">
                     <x-input-label for="name" value="Name" class="text-gray-100" />
