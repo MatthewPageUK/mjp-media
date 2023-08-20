@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Service for managing the users storage.
+ * Helper service for managing the users storage.
  *
  */
 class UserStorage
@@ -89,4 +89,14 @@ class UserStorage
         return 6 * 1024 * 1024 * 1024;
     }
 
+    /**
+     * Delete a user file
+     *
+     * @param string $path
+     * @return bool
+     */
+    public function deleteFile(string $path): bool
+    {
+        return Storage::delete($path);
+    }
 }

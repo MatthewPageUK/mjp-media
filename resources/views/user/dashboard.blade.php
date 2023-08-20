@@ -21,10 +21,7 @@
                 <h1 class="text-4xl md:text-6xl md:px-8 text-center md:text-left font-black tracking-tight text-gray-100">Storage Used</h1>
 
                 <div class="text-secondary-900 transition-all hover:scale-110 text-2xl md:text-5xl font-light px-12 py-4 text-center md:text-left  bg-secondary-300 rounded-full">
-                    {{-- {{ number_format(Auth::user()->capacityUsed, 2) }}Mb in {{ Auth::user()->totalFiles }} files --}}
-
                     {{ Str::humanFileSize(Auth::user()->capacityUsed) }} in {{ Auth::user()->totalFiles }} files
-                    {{-- Capacity progress --}}
                     <x-progress-bar :percent="Auth::user()->capacityUsedPercent" />
                 </div>
 

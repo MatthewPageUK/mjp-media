@@ -21,7 +21,7 @@ export default {
                 primary: colors.blue,
                 secondary: colors.amber,
                 highlight: colors.purple,
-                button: colors.sky,
+                button: colors.blue,
             },
         },
     },

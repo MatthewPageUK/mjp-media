@@ -27,15 +27,17 @@
 
             @if ($this->newFile)
 
-{{ $this->newFile->getMimeType() }}}
                 {{-- File Name --}}
-                <div class="col-span-2 md:col-span-1">
-                    <x-input-label for="name" value="Name" class="text-gray-100" />
+                <div class="col-span-2">
+                    <div class="grid grid-cols-2">
+                        <x-input-label for="name" value="Name" class="text-gray-100" />
+                        <p class="text-xs text-gray-300 font-light justify-self-end">Type : {{ $this->newFile->getMimeType() }}</p>
+                    </div>
                     <x-text-input wire:model.lazy="newFileName" type="text" :value="$this->newFile->getClientOriginalName()" class="text-xl" />
                     <x-input-error :messages="$errors->get('newFileName')" />
                 </div>
 
-                <div class="col-span-2 md:col-span-1 text-gray-100">
+                <div class="col-span-2 text-gray-100">
                     Image Preview:
                         @if ($this->getNewFileTemporaryUrl())
                             <img src="{{ $this->getNewFileTemporaryUrl() }}" class="w-full">
@@ -44,13 +46,13 @@
                         @endif
                 </div>
 
-                <x-action-button wire:click.prevent="uploadFile">
+                <x-primary-button wire:click.prevent="uploadFile">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                     </svg>
 
                     Upload File
-                </x-action-button>
+                </x-primary-button>
 
             @endif
 

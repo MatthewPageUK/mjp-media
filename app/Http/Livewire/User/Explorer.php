@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Facades\UserStorage;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,7 @@ class Explorer extends Component
 {
     use WithFileUploads;
     use WithDirectories;
+    use WithFileUpload;
 
     /**
      * Selected file
@@ -23,11 +25,6 @@ class Explorer extends Component
      */
     public $file = null;
 
-    public $newFile;
-
-    public $newFileName;
-
-    public $showFileUpload = false;
 
     public $mode = 'list';
 
@@ -41,26 +38,38 @@ class Explorer extends Component
 
     public $showFile = false;
 
-    public function rules()
+    public $showDeleteFile = false;
+
+    // public function rules()
+    // {
+    //     if ($this->showCreateDirectory) {
+    //         return [
+    //             'newDirectory' => [
+    //                 'required',
+    //                 'max:32',
+    //                 'regex:/^[a-z0-9-]+$/',
+    //                 Rule::notIn(collect($this->directories)->pluck('name')->toArray()),
+    //             ],
+    //         ];
+    //     }
+
+    //     // if ($this->showDeleteDirectory) {
+    //     //     return [
+    //     //         'confirmDeleteDirectory' => 'accepted',
+    //     //     ];
+    //     // }
+
+    //     return [];
+    // }
+
+    public function showDeleteFile()
     {
-        if ($this->showCreateDirectory) {
-            return [
-                'newDirectory' => [
-                    'required',
-                    'max:32',
-                    'regex:/^[a-z0-9-]+$/',
-                    Rule::notIn(collect($this->directories)->pluck('name')->toArray()),
-                ],
-            ];
-        }
+        $this->showDeleteFile = true;
+    }
 
-        // if ($this->showDeleteDirectory) {
-        //     return [
-        //         'confirmDeleteDirectory' => 'accepted',
-        //     ];
-        // }
-
-        return [];
+    public function cancelFileDelete()
+    {
+        $this->showDeleteFile = false;
     }
 
     public function setListMode()
@@ -68,20 +77,38 @@ class Explorer extends Component
         $this->mode = 'list';
     }
 
+    public function deleteFile(?string $path = null)
+    {
+        if ($path) {
+            $file = Auth::user()->storagePath . $this->directory . $path;
+        } else {
+            $file = $this->file['path'];
+        }
+
+        if (UserStorage::deleteFile($file)) {
+            session()->flash('success', 'File deleted successfully.');
+            $this->deselectFile();
+            $this->cancelFileDelete();
+            $this->setFiles();
+        } else {
+            session()->flash('error', 'File could not be deleted.');
+        }
+    }
+
     public function setPreviewMode()
     {
         $this->mode = 'preview';
     }
 
-    public function messages()
-    {
-        return [
-            'newDirectory.required' => 'Please enter a directory name.',
-            'newDirectory.max' => 'Directory name must be less than 16 characters.',
-            'newDirectory.regex' => 'Directory name must only contain lowercase letters, numbers and hyphens.',
-            'newDirectory.not_in' => 'Directory name already exists.',
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'newDirectory.required' => 'Please enter a directory name.',
+    //         'newDirectory.max' => 'Directory name must be less than 16 characters.',
+    //         'newDirectory.regex' => 'Directory name must only contain lowercase letters, numbers and hyphens.',
+    //         'newDirectory.not_in' => 'Directory name already exists.',
+    //     ];
+    // }
 
     public function mount()
     {
@@ -91,16 +118,6 @@ class Explorer extends Component
     }
 
 
-
-    public function updatedNewFile($value)
-    {
-        $this->newFileName = $this->newFile->getClientOriginalName();
-    }
-
-    public function updatedNewFileName($value)
-    {
-        $this->newFileName = Str::fileSlug($value);
-    }
 
 
     /**
@@ -120,16 +137,7 @@ class Explorer extends Component
     }
 
 
-    public function getNewFileTemporaryUrl()
-    {
-        try {
-            $url = $this->newFile->temporaryUrl();
-        } catch (\Exception $e) {
-            $url = null;
-        }
 
-        return $url;
-    }
 
     /**
      * Select a file
@@ -183,54 +191,6 @@ class Explorer extends Component
     }
 
 
-    public function uploadFile()
-    {
-        $this->validate([
-            // 'newFile' => 'required|file|max:10240',
-            'newFile' => [
-                'required',
-                'file',
-                'max:10240',
-                'mimetypes:'.implode(',', config('app.allowed_mime_types')),
-            ],
-            'newFileName' => [
-                'required',
-                'max:255',
-                Rule::notIn(collect($this->files)->pluck('name')->toArray()),
-            ],
-        ], [
-            'newFile.required' => 'Please select a file to upload.',
-            'newFile.max' => 'File size must be less than 10MB.',
-            'newFile.mimetypes' => 'File type not allowed.',
-            'newFileName.required' => 'Please enter a file name.',
-            'newFileName.max' => 'File name must be less than 255 characters.',
-            'newFileName.not_in' => 'File name already exists.',
-        ]);
-
-        $this->newFile->storeAs(
-            Auth::user()->storagePath . $this->directory,
-            $this->newFileName
-        );
-
-        $this->cancelFileUpload();
-
-        $this->setFiles();
-    }
-
-
-    public function showFileUpload()
-    {
-        $this->newFile = null;
-        $this->newFileName = null;
-        $this->showFileUpload = true;
-    }
-
-    public function cancelFileUpload()
-    {
-        $this->newFile = null;
-        $this->newFileName = null;
-        $this->showFileUpload = false;
-    }
 
     /**
      * Render the explorer page

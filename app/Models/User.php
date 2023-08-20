@@ -98,6 +98,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Capacity remaining.
+     *
+     * @return float
+     */
+    public function getCapacityRemainingAttribute(): float
+    {
+        return $this->capacityBytes - $this->capacityUsed;
+    }
+
+    /**
      * The storage path for this user
      *
      * @return string

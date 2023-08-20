@@ -5,6 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'max_file_size' => 10 * 1024 * 1024,
+
     /*
     |--------------------------------------------------------------------------
     | Allowed upload mime types
@@ -21,6 +23,7 @@ return [
         'image/gif',
         'image/bmp',
         'image/svg+xml',
+        'image/vnd.adobe.photoshop',
         'video/mp4',
         'video/quicktime',
         'video/x-msvideo',

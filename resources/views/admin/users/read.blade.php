@@ -4,14 +4,14 @@
     <div class="mb-16 justify-end flex items-center gap-2">
         <h1 class="flex-1 text-5xl font-semibold text-gray-100 tracking-tight">User Details</h1>
         {{-- Edit User --}}
-        <x-action-button href="{{ route('user.update', $this->user) }}">
+        <x-primary-button href="{{ route('user.update', $this->user) }}">
             Edit user
-        </x-action-button>
+        </x-primary-button>
 
         {{-- Back --}}
-        <x-action-button href="{{ route('users') }}">
+        <x-primary-button href="{{ route('users') }}">
             Back
-        </x-action-button>
+        </x-primary-button>
     </div>
 
     <div class="text-gray-100">

@@ -37,8 +37,8 @@
             </a>
         @endif
 
-        <x-action-button class="ml-3">
+        <x-primary-button class="ml-3">
             {{ __('Log in') }}
-        </x-action-button>
+        </x-primary-button>
     </div>
 </form>
