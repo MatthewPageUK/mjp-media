@@ -87,6 +87,9 @@
                 {{-- Delete file --}}
                 <x-secondary-button wire:click.prevent="showDeleteFile">Delete</x-secondary-button>
 
+                {{-- Select file --}}
+                <x-secondary-button x-on:click.prevent="window.parent.postMessage('{{ $url }}', '*')">Select</x-secondary-button>
+
             </div>
         @endif
     </div>
